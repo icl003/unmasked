@@ -1,0 +1,48 @@
+#create _brand.yml
+
+
+meta:
+  name: "Unmasking the Data"
+    short: "Unmasking the Data"
+    full: "Unmasking the Data: Exploring Data with R"
+  link:
+    linkedin: "https://www.linkedin.com/in/bella-luzak"
+
+
+color:
+  # 1. raw palette
+  palette:
+    text-dark-blue: "#00214C"
+    background-light-blue: "#D7DEEA"
+    brand-blue: "#99B2DD"
+    darker-brand-blue: "#7A9BD3"
+    salmon-pink: "#E9A4A3"
+    peach-cream: "#F9DEC9"
+
+  # 2. functional roles (mapped to document elements)
+  foreground: "#00214C"             # text color
+  background: "#D7DEEA"             # pg background color
+  primary: "#99B2DD"                # links, main structural accents
+  header-darker-primary: "#7A9BD3"  # header color
+  secondary: "#E9A4A3"              # sub-headers, secondary main brand color?
+  accent: "#F9DEC9"                 # accents
+
+
+typography:
+  fonts:
+    - family: "sans"
+      source: system
+  headings:
+    family: "sans"
+    weight: bold
+
+
+logo:
+  images:
+    full-color: "Logo.png"
+  small: full-color
+
+
+
+
+

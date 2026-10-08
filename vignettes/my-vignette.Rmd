@@ -1,0 +1,176 @@
+---
+title: "Data Moves and Funtions with the Scooby-Doo Dataset"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(unmasked)
+```
+
+# delete, `install(build_vignettes = TRUE)` PUT IN CONSOLE BEFORE DONE
+
+
+```{r}
+library(tidytuesdayR)
+library(dplyr)
+library(scales)
+library(ggplot2)
+
+tuesdata <- tidytuesdayR::tt_load(2021, week = 29)
+scoobydoo <- tuesdata$scoobydoo
+```
+
+
+# Working with the Scoobydoo Dataset
+
+This vignette demonstrates the use of many different dplyr data moves to help format and summarize the data. We will work with functions such as `filter()`, `group_by()`/`summarize()`, `join()`, `arrange()` and `mutate()`, and we'll demonstrate these on the `scoobydoo` data set. We will also introduce a helper functions which will make it easier to explore different patterns in the data. The helper function we'll look at is `percent_by_group()`, allowing us to easily calculate the percentage of individuals in a group out of the total. Additionally we will look at the `theme_trap()` function, which features a pastel-type color palette and a clean and simple graphing organization.
+
+
+# The Scooby-Doo Dataset
+
+The `scoobydoo` data set contains information about episodes from the Scoobydoo television franchise. Each row contains information about an episode, such as the title, season name, date aired, type of monster, and many others.
+
+The data set provides an opportunity to explore the data and investigate patterns or trends within the data. Here, we will use different data moves and helper functions to aid in these investigations, finding patterns and summarizing information in the data.
+
+# Filtering
+
+The `filter()` function allows us to filter down the data to only show observations that meet a specific condition. Here, we filter down the scoobdoo data set to include only observations where the monster was real.
+
+```{r}
+scooby_filtered <- scoobydoo %>%
+  filter(monster_real == TRUE)
+```
+
+This produces a new data set, scooby_filtered, that now only contains episodes where the monster was identified as real.
+
+# Grouping and Summarizing
+
+The `group_by()` functions allows us to separate the data set into groups based on one or more variables. The `summarize()` function lets us reduce the data to summary information, such as counts. Together, these two functions can be used to provide us with summary statistics for different groups. Here, we group the episodes based on if the monster was real, then summarize by providing the total count of episodes for each group.
+
+```{r}
+scooby_groupby <- scoobydoo %>%
+  group_by(monster_real) %>%
+  summarize(episode_count = n())
+```
+
+This produces a new data set, scooby_groupby, that now has different groups for if the monster was real, and has summary information about the number of episodes for each group.
+
+# Joining
+
+Joining allows us to join different data sets into one, matching them by a column they have in common. Specifically, the `left_join()` function allows us to combine two data sets, keeping all of the information from the first data set and adding matching information from the second data set. Here, before joining, we have to create two separate data sets from the original scoobydoo data set, ensuring we keep a matching column. Both data sets include `title` and `series_name`, because there was multiple observations with the same title, so joining on both columns allows us to match one-to-one. We will use both variables here as the joining keys. Here, we make two separate data sets, selecting which columns to keep in each.
+
+```{r}
+# had some trouble w this bc apparently multiple titles matched, so had to make the smaller sets include   both title and series name to join on
+# first making two smaller versions of scoobydoo
+scooby_series_name <- scoobydoo %>%
+  select(title, series_name)
+
+scooby_monsters_real <- scoobydoo %>%
+  select(title, series_name, monster_real)
+```
+
+We can then join the two data sets we've created on our two common variables, `title` and `series_name`.
+
+```{r}
+# joining these together
+scooby_joined <- scooby_series_name %>%
+  left_join(scooby_monsters_real, by = c("title", "series_name"))
+```
+
+This produces a new data set, `scooby_joined`, that is now one joined data set, which used `scooby_series_name` as the original data set, and matched `scooby_monsters_real` to it.
+
+# Arranging
+
+The `arrange()` function allows us to order observations based on one or more variables. Here, we arrange the episodes based on their run time length, first from shortest to longest run time.
+
+```{r}
+# arrange
+# from shortest to longest run time
+scooby_arrange <- scoobydoo %>%
+  arrange(run_time)
+```
+
+We can also arrange the episodes in the opposite order using `desc()` within \`arrange(). So now the episodes will be arrange from longest to shortest run time.
+
+```{r}
+# from longest to shortest run time
+scooby_desc_arrange <- scoobydoo %>%
+  arrange(desc(run_time))
+```
+
+# Mutate
+
+The `mutate()` function creates a new column based on existing columns. Here, we created a variable which is based on if the run time is longer than 30 minutes, and provides either true or false.
+
+```{r}
+scooby_mutate <- scoobydoo %>%
+  mutate(long_episode = run_time > 30)
+```
+
+The new variable, `long_episode` codes for TRUE if the episode is longer than 30 minutes, and FALSE if not.
+
+# Helper Function
+
+The `percent_by_group()` function calculates the percentage of observations in each category of a specific column or variable. First, it counts the number of observations in each group, then divides each by the total number of observations.
+
+```{r}
+percent_by_group(scoobydoo, network)
+```
+
+This returns the number of episodes within each network category, and calculates the percentage of the total that this sum equates to.
+
+# Theme Function
+
+The `theme_trap()` function features a pastel-type color palette and a clean, simple graphing organization. The goal is this theme was to create a soft, extremely pleasing organizational outline. There's many colors within the theme which create some diversity and elemental aspects to observe. The darker colors allow for smaller figures and text use, while some of the lighter colors, such as the cream or salmon, are used more often in the larger figures to keep the clarity.
+
+```{r}
+# making the variables numerical
+scoobydoo <- scoobydoo %>%
+  mutate(
+    engagement = as.numeric(engagement),
+    imdb = as.numeric(imdb)
+  )
+
+# scatterplot showing the theme_trap function
+scatter_plot <-
+  ggplot(scoobydoo, aes(x = engagement, y = imdb)) +
+  geom_point(
+    color = "#3A405A",
+    alpha = 0.9,
+    size = 2
+  ) +
+  labs(
+    title = "Scooby-Doo: Engagement vs. IMDb Score",
+    subtitle = "Do more-engaged episodes receive higher IMDb scores?",
+    x = "Engagement",
+    y = "IMDb Score",
+  ) +
+  theme_trap()
+
+scatter_plot
+```
+
+
+
+
+
+
+
+
+# Conclusion
+
+This vignette demonstrated how the `scoobydoo` data set could be explored using the dplyr data moves, including the functions `filter()`, `group_by()`/`summarize()`, `join()`, `arrange()` and `mutate()`. We also used new helper and theme functions, which additionally helped explore and summarize patterns in the data set.
+
+We showed how the package can be used alongside `dplyr` to explore and summarize episodes and identify possible patterns within the data.
+
