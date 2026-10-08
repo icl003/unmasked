@@ -1,11 +1,12 @@
 Package: unmasked
-Title: What the Package Does (One Line, Title Case)
+Title: Unmasking the Data: Exploring Data with R
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Bella", "Luzak", , "Bella.Luzak@example.com", role = c("aut", "cre"))
+Description: The package unmasked allows for an easy way to calculate the proportion in a percent of the number of inputs per group. This function will take each group's count and divide by the total count in the data set, providing an accurate proportional representation of the data.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Imports: 
+    dplyr
