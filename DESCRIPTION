@@ -10,3 +10,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports: 
     dplyr
+URL: https://github.com/icl003/unmasked
+BugReports: https://github.com/icl003/unmasked/issues
