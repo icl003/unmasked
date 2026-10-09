@@ -132,40 +132,34 @@ This returns the number of episodes within each network category, and calculates
 
 # Theme Function
 
-The `theme_trap()` function features a pastel-type color palette and a clean, simple graphing organization. The goal is this theme was to create a soft, extremely pleasing organizational outline. There's many colors within the theme which create some diversity and elemental aspects to observe. The darker colors allow for smaller figures and text use, while some of the lighter colors, such as the cream or salmon, are used more often in the larger figures to keep the clarity.
+The `theme_trap()` function features a pastel-type color palette and a clean, simple graphing organization. The goal of this theme was to create a soft, extremely pleasing organizational outline. Only a few main base colors are used in the theme which come from the brand design, which allows them to complement each other nicely. The darker blues are used as the main text color, while the graph lines, background color, and captions feature lighter, softer colors, all complementing eachother nicely.
 
 ```{r}
-# making the variables numerical
-scoobydoo <- scoobydoo %>%
-  mutate(
-    engagement = as.numeric(engagement),
-    imdb = as.numeric(imdb)
-  )
-
-# scatterplot showing the theme_trap function
-scatter_plot <-
-  ggplot(scoobydoo, aes(x = engagement, y = imdb)) +
-  geom_point(
+ggplot(scoobydoo, aes(x = format, fill = format)) +
+  geom_bar(
     color = "#3A405A",
-    alpha = 0.9,
-    size = 2
+    linewidth = 0.25
+  ) +
+  scale_fill_manual(
+    values = c(
+      "#3A405A",
+      "#E9A4A3",
+      "#99B2DD",
+      "#C98F7A",
+      "#F9DEC9"
+    )
   ) +
   labs(
-    title = "Scooby-Doo: Engagement vs. IMDb Score",
-    subtitle = "Do more-engaged episodes receive higher IMDb scores?",
-    x = "Engagement",
-    y = "IMDb Score",
+    title = "Scooby-Doo Media Format Used",
+    subtitle = "Number of episodes by media format",
+    x = NULL,
+    y = "Number of Episodes",
+    caption = "Source: tidy tuesday scoobydoo dataset"
   ) +
   theme_trap()
-
-scatter_plot
 ```
 
-
-
-
-
-
+You can see above how the main layout of the graph is a simple, blue-focused theme with a very light peach background. The set-up is cleanly and neat, with not too much going on as to not overwhelm viewers attention with non-data-ink
 
 
 # Conclusion

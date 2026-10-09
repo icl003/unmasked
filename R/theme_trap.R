@@ -14,7 +14,7 @@ theme_trap <- function() {
 
   # set base theme and font family
   ggplot2::theme_minimal(
-    base_family = "sans"
+    base_family = "serif"
   ) +
 
     # text elements
@@ -28,7 +28,7 @@ theme_trap <- function() {
 
       # very light peach background for the actual graph
       panel.background = ggplot2::element_rect(
-        fill = "#FFFDFC",
+        fill = "#FEF8F4",
         color = NA
       ),
 
