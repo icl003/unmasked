@@ -24,7 +24,6 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-Unmask your data with simple data manipulation functions and a custom data plotting theme!
 
 ## Overview
 

@@ -26,9 +26,6 @@ plotting theme!
 
 <!-- badges: end -->
 
-Unmask your data with simple data manipulation functions and a custom
-data plotting theme!
-
 ## Overview
 
 The unmasked package provides a way to make data exploration,
