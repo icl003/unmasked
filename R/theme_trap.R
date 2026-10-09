@@ -1,6 +1,6 @@
 #' Trap Theme
 #'
-#' A custom theme for ggplot2 graphs which utilizes idk what colors.
+#' A custom theme for ggplot2 graphs which utilizes blues and peach tone colors. Organized in a consistent, pleasing way.
 #'
 #' @returns A custom ggplot2 theme.
 #' @export
@@ -44,14 +44,14 @@ theme_trap <- function() {
       # light blue for the subtitle
       plot.subtitle = ggplot2::element_text(
         size = 12,
-        color = "#6B85B5",
+        color = "#52698f",
         margin = ggplot2::margin(b = 10)
       ),
 
       # cream for the caption
       plot.caption = ggplot2::element_text(
         size = 11,
-        color = "#DDB9A5",
+        color = "#80563F",
         margin = ggplot2::margin(t = 15),
         hjust = 0
       ),
@@ -91,6 +91,6 @@ theme_trap <- function() {
 
       # keep legend simple and clean
       legend.background = ggplot2::element_blank(),
-      legend.key = ggplot2::element_blank(),
+      legend.key = ggplot2::element_blank()
     )
 }

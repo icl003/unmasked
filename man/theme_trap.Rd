@@ -10,7 +10,7 @@ theme_trap()
 A custom ggplot2 theme.
 }
 \description{
-A custom theme for ggplot2 graphs which utilizes idk what colors.
+A custom theme for ggplot2 graphs which utilizes blues and peach tone colors. Organized in a consistent, pleasing way.
 }
 \examples{
 data(mtcars)

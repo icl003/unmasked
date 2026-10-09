@@ -12,28 +12,32 @@ meta:
 color:
   # 1. raw palette
   palette:
-    text-dark-blue: "#00214C"
+    text-dark-blue: "#3A405A"
     background-light-blue: "#D7DEEA"
     brand-blue: "#99B2DD"
-    darker-brand-blue: "#7A9BD3"
+    darker-brand-blue: "#52698f"
     salmon-pink: "#E9A4A3"
     peach-cream: "#F9DEC9"
+    brown: "#80563F"
+    lighter-brown: "#C98F7A"
 
   # 2. functional roles (mapped to document elements)
-  foreground: "#00214C"             # text color
+  foreground: "#3A405A"             # text color
   background: "#D7DEEA"             # pg background color
   primary: "#99B2DD"                # links, main structural accents
-  header-darker-primary: "#7A9BD3"  # header color
-  secondary: "#E9A4A3"              # sub-headers, secondary main brand color?
+  header-darker-primary: "#52698f"  # header color
+  secondary: "#E9A4A3"              # sub-headers, secondary main brand color
   accent: "#F9DEC9"                 # accents
+  captions: "#80563F"               # for captions or small text
+  complementary: "#C98F7A"          # complementary color, can be used as accent
 
 
 typography:
   fonts:
-    - family: "sans"
+    - family: "serif"
       source: system
   headings:
-    family: "sans"
+    family: "serif"
     weight: bold
 
 

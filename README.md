@@ -35,15 +35,15 @@ and organize the data, unmasked helps to uncover patterns in the data
 and clearly communicate the findings.
 
 Whether you’re exploring a new data set, completing a class assignment,
-or creating a polished vizualization, unmasked offers you the
+or creating a polished visualization, unmasked offers you the
 opportunity to do more with your data.
 
 ## Why use unmasked?
 
 Summarizing observations, calculating percentages, and formatting plots
-often become a repetive and time consuming process. With unmasked, this
-process is made much simpler by bringing together helpful functions and
-a custom theme.
+often become a repetitive and time consuming process. With unmasked,
+this process is made much simpler by bringing together helpful functions
+and a custom theme.
 
 - **Simplify data exploration**: Work with a data set using simple data
   moves to manipulate and explore the data.
@@ -122,15 +122,15 @@ percent_by_group(scoobydoo, network)
 #> 11 Warner Home Video       39   6.47
 ```
 
-We used the function to explore how episodes are distributed across
-different networks, since both the count and percentage are provided for
-each network.
+We used the function to provide both the count and percentage for each
+network, which allows us to explore how episodes are distributed across
+different networks.
 
 ### theme_trap()
 
 The `theme_trap()` function provides a theme with a simple, clean,
 consistent layout, with a soft pastel-like aesthetic. It focuses on
-blues, using navy for next, a lighter blue for graph lines and
+blues, using navy for text, a lighter blue for graph lines and
 highlights, as well as a complementary light peach background to tie the
 graph together. These colors come from the brand, which uses a similar
 color palette focused on blues but also includes peaches and browns
@@ -154,10 +154,7 @@ tuesdata <- tidytuesdayR::tt_load(2021, week = 29)
 scoobydoo <- tuesdata$scoobydoo
 
 ggplot(scoobydoo, aes(x = format, fill = format)) +
-  geom_bar(
-    color = "#3A405A",
-    linewidth = 0.25
-  ) +
+  geom_bar() +
   scale_fill_manual(
     values = c(
       "#3A405A",
@@ -182,6 +179,21 @@ ggplot(scoobydoo, aes(x = format, fill = format)) +
 Applying the theme function gives a consistent and clean visual layout
 that avoids non-data-ink without all the additional manual coding.
 
+#### The brand
+
+I wanted to closely tie together my brand and the theme function I chose
+to create. The brand I created first, spending way too long deciding on
+a color palette. I’ve always loved blue, so the main color of the brand
+and the theme are blue, darker blues for the text, and light blues for
+some accent colors. I went through many complementary color options,
+finding that peaches, creams, and browns looked quite nice. I used the
+majority of these as accent colors, especially the lighter color options
+as they’d be hard to read if used as the color for small font. The fonts
+are both a simple, clean looking serif font, which I then utilized more
+within the theme as axis labels and sub headers and captions. For my
+brand, I chose to link my LinkedIn, since this is such an emerging field
+and place to find work and connect with people.
+
 ## Exploring the Scooby-Doo dataset
 
 The unmasked package can be used with dplyr to investigate different
@@ -193,8 +205,8 @@ Using this dataset, you can explore questions such as:
 - Which episodes have the longest run times?
 - How are episodes distributed across networks and media formats?
 
-For example, with scoobydoo data set from Tidy Tuesday, you can filter
-the episodes featuring real monsters:
+For example, with the scoobydoo data set from Tidy Tuesday, you can
+filter the episodes featuring real monsters:
 
 ``` r
 library(dplyr)
@@ -203,7 +215,7 @@ scooby_filtered <- scoobydoo %>%
   filter(monster_real == TRUE)
 ```
 
-Where we now have a filtered data set which only includes episodes where
+Where we now have a filtered data set that only includes episodes where
 the monster was identified as real.
 
 We can also group episodes by whether or not the monster was real, and
@@ -238,7 +250,7 @@ You can install these with:
 For a more detailed outline of the entire package, visit the vignette,
 which goes through every type of data move, as well as in depth
 explanations of both the helper and theme functions using the scoobydoo
-dataset.
+dataset for examples.
 
 ## Contributing
 

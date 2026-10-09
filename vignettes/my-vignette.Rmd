@@ -18,8 +18,6 @@ knitr::opts_chunk$set(
 library(unmasked)
 ```
 
-# delete, `install(build_vignettes = TRUE)` PUT IN CONSOLE BEFORE DONE
-
 
 ```{r}
 library(tidytuesdayR)
@@ -34,14 +32,14 @@ scoobydoo <- tuesdata$scoobydoo
 
 # Working with the Scoobydoo Dataset
 
-This vignette demonstrates the use of many different dplyr data moves to help format and summarize the data. We will work with functions such as `filter()`, `group_by()`/`summarize()`, `join()`, `arrange()` and `mutate()`, and we'll demonstrate these on the `scoobydoo` data set. We will also introduce a helper functions which will make it easier to explore different patterns in the data. The helper function we'll look at is `percent_by_group()`, allowing us to easily calculate the percentage of individuals in a group out of the total. Additionally we will look at the `theme_trap()` function, which features a pastel-type color palette and a clean and simple graphing organization.
+This vignette demonstrates the use of many different dplyr data moves to help format and summarize the data. We will work with functions such as `filter()`, `group_by()`/`summarize()`, `join()`, `arrange()` and `mutate()`, and we'll demonstrate these on the `scoobydoo` data set. We will also introduce a helper function which will make it easier to explore different patterns in the data. The helper function we'll look at is `percent_by_group()`, allowing us to easily calculate the percentage of individuals in a group out of the total. Additionally we will look at the `theme_trap()` function, which features a pastel-type color palette and a clean and simple graphing organization.
 
 
 # The Scooby-Doo Dataset
 
 The `scoobydoo` data set contains information about episodes from the Scoobydoo television franchise. Each row contains information about an episode, such as the title, season name, date aired, type of monster, and many others.
 
-The data set provides an opportunity to explore the data and investigate patterns or trends within the data. Here, we will use different data moves and helper functions to aid in these investigations, finding patterns and summarizing information in the data.
+The data set provides an opportunity to explore the data and investigate patterns or trends. Here, we will use different data moves and helper functions to aid in these investigations, finding patterns and summarizing information in the data.
 
 # Filtering
 
@@ -56,7 +54,7 @@ This produces a new data set, scooby_filtered, that now only contains episodes w
 
 # Grouping and Summarizing
 
-The `group_by()` functions allows us to separate the data set into groups based on one or more variables. The `summarize()` function lets us reduce the data to summary information, such as counts. Together, these two functions can be used to provide us with summary statistics for different groups. Here, we group the episodes based on if the monster was real, then summarize by providing the total count of episodes for each group.
+The `group_by()` function allows us to separate the data set into groups based on one or more variables. The `summarize()` function lets us reduce the data to summary information, such as counts. Together, these two functions can be used to provide us with summary statistics for different groups. Here, we group the episodes based on if the monster was real, then summarize by providing the total count of episodes for each group.
 
 ```{r}
 scooby_groupby <- scoobydoo %>%
@@ -71,8 +69,8 @@ This produces a new data set, scooby_groupby, that now has different groups for 
 Joining allows us to join different data sets into one, matching them by a column they have in common. Specifically, the `left_join()` function allows us to combine two data sets, keeping all of the information from the first data set and adding matching information from the second data set. Here, before joining, we have to create two separate data sets from the original scoobydoo data set, ensuring we keep a matching column. Both data sets include `title` and `series_name`, because there was multiple observations with the same title, so joining on both columns allows us to match one-to-one. We will use both variables here as the joining keys. Here, we make two separate data sets, selecting which columns to keep in each.
 
 ```{r}
-# had some trouble w this bc apparently multiple titles matched, so had to make the smaller sets include   both title and series name to join on
-# first making two smaller versions of scoobydoo
+# since multiple titles matched, had to make the smaller sets include both title and series name to join on
+# making two smaller versions of scoobydoo data set
 scooby_series_name <- scoobydoo %>%
   select(title, series_name)
 
@@ -95,13 +93,12 @@ This produces a new data set, `scooby_joined`, that is now one joined data set, 
 The `arrange()` function allows us to order observations based on one or more variables. Here, we arrange the episodes based on their run time length, first from shortest to longest run time.
 
 ```{r}
-# arrange
 # from shortest to longest run time
 scooby_arrange <- scoobydoo %>%
   arrange(run_time)
 ```
 
-We can also arrange the episodes in the opposite order using `desc()` within \`arrange(). So now the episodes will be arrange from longest to shortest run time.
+We can also arrange the episodes in the opposite order using `desc()` within `arrange()`. So now the episodes will be arranged from longest to shortest run time.
 
 ```{r}
 # from longest to shortest run time
@@ -132,14 +129,11 @@ This returns the number of episodes within each network category, and calculates
 
 # Theme Function
 
-The `theme_trap()` function features a pastel-type color palette and a clean, simple graphing organization. The goal of this theme was to create a soft, extremely pleasing organizational outline. Only a few main base colors are used in the theme which come from the brand design, which allows them to complement each other nicely. The darker blues are used as the main text color, while the graph lines, background color, and captions feature lighter, softer colors, all complementing eachother nicely.
+The `theme_trap()` function features a pastel-type color palette and a clean, simple graphing organization. The goal of this theme was to create a soft, extremely pleasing organizational outline. Only a few main base colors are used in the theme which come from the brand design, which allows them to complement each other nicely. The darker blues are used as the main text color, while the graph lines, background color, and captions feature lighter, softer colors, all complementing each other nicely.
 
 ```{r}
 ggplot(scoobydoo, aes(x = format, fill = format)) +
-  geom_bar(
-    color = "#3A405A",
-    linewidth = 0.25
-  ) +
+  geom_bar() +
   scale_fill_manual(
     values = c(
       "#3A405A",
@@ -160,7 +154,6 @@ ggplot(scoobydoo, aes(x = format, fill = format)) +
 ```
 
 You can see above how the main layout of the graph is a simple, blue-focused theme with a very light peach background. The set-up is cleanly and neat, with not too much going on as to not overwhelm viewers attention with non-data-ink
-
 
 # Conclusion
 
