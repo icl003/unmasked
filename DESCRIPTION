@@ -3,7 +3,7 @@ Title: Unmasking the Data: Exploring Data with R
 Version: 0.0.0.9000
 Authors@R: 
     person("Bella", "Luzak", , "Bella.Luzak@example.com", role = c("aut", "cre"))
-Description: The package unmasked allows for an easy way to calculate the proportion in a percent of the number of inputs per group. This function will take each group's count and divide by the total count in the data set, providing an accurate proportional representation of the data.
+Description: The package unmasked provides a way to make data exploration, summarization, and visualization easier and more approachable. By combining workflow moves and functions to calculate group percentages and organize the data, unmasked helps to uncover patterns in the data and clearly communicate the findings.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
