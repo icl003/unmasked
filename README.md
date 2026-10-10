@@ -90,7 +90,7 @@ tuesdata <- tidytuesdayR::tt_load(2021, week = 29)
 #> --- There is 1 file available ---
 #> 
 #> 
-#> ── Downloading files ───────────────────────────────────────────────────────────
+#> ── Downloading files ──────────────────────────────────────────────────────────────────────────────────────────
 #> 
 #>   1 of 1: "scoobydoo.csv"
 scoobydoo <- tuesdata$scoobydoo
@@ -148,7 +148,7 @@ tuesdata <- tidytuesdayR::tt_load(2021, week = 29)
 #> --- There is 1 file available ---
 #> 
 #> 
-#> ── Downloading files ───────────────────────────────────────────────────────────
+#> ── Downloading files ──────────────────────────────────────────────────────────────────────────────────────────
 #> 
 #>   1 of 1: "scoobydoo.csv"
 scoobydoo <- tuesdata$scoobydoo
